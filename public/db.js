@@ -12,3 +12,16 @@ request.onupgradeneeded = function (event) {
     } 
     
   };
+
+  // After the Indexed DB is created and the user is online, call the checkDatabase function to transfer any stored transactions
+request.onsuccess = function (event) {
+    db = event.target.result;
+  
+    if (navigator.onLine) {
+      checkDatabase();
+    }
+  };
+  
+request.onerror = function (event) {
+    console.log(event.target.errorCode)
+  };
