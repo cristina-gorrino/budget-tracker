@@ -35,3 +35,35 @@ function saveRecord(record) {
     const BudgetStore = transaction.objectStore("BudgetStore");
     BudgetStore.add(record);
 }
+
+function checkDatabase() {
+    // open a transaction on the pending db
+    const transaction = db.transaction(["BudgetStore"], "readwrite");
+    // access the pending object store
+    const BudgetStore = transaction.objectStore("BudgetStore");
+    // get all records from store and set to a variable
+    const getAll = BudgetStore.getAll();
+  
+    // Make the same POST request to add transactions to mongo database
+    getAll.onsuccess = function () {
+      if (getAll.result.length > 0) {
+        fetch('/api/transaction/bulk', {
+          method: 'POST',
+          body: JSON.stringify(getAll.result),
+          headers: {
+            Accept: 'application/json, text/plain, */*',
+            'Content-Type': 'application/json',
+          },
+        })
+          .then((response) => response.json())
+          .then(() => {
+            // if successful, open a transaction on the pending db
+            // access the pending object store
+            // clear all items in the store
+            const transaction = db.transaction(["BudgetStore"], "readwrite");
+            const BudgetStore = transaction.objectStore("BudgetStore");
+            BudgetStore.clear();
+          });
+      }
+    };
+}
