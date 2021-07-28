@@ -23,7 +23,7 @@
 
 This application allows the user to keep track of expenses and earnings whether they are currently online or not. The app has a simple form to enter spending or income transactions. These are added or subtracted from the total and reflected on the graph for the user to see. If the user is offline, the transactions are stored on the IndexedDB so that they can be added to the regular database once the internet connection is established again.
 
-Deployed Link: 
+Deployed Link: https://obscure-thicket-21686.herokuapp.com/
 
 <a name="installation"></a>
 ## Installation
