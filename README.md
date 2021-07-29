@@ -25,6 +25,10 @@ This application allows the user to keep track of expenses and earnings whether 
 
 Deployed Link: https://obscure-thicket-21686.herokuapp.com/
 
+Visual of the app:
+
+![An example of the budget tracker with transactions](./budget-tracker.png)
+
 <a name="installation"></a>
 ## Installation
     
